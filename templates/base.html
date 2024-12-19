@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+
+    <!-- FontAwesome JS-->
+    <script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="{% static 'css/theme-1.css' %}">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-wrapper {
+            flex: 1;
+        }
+
+        footer {
+            flex-shrink: 0;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header text-center">
+      <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="{% url 'blog:articles_list' %}">Blogify</a></h1>
+
+      <nav class="navbar navbar-expand-lg navbar-dark" >
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="navigation" class="collapse navbar-collapse flex-column" >
+        <div class="profile-section pt-3 pt-lg-0">
+            <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'images/me.jpg' %}" alt="image" style="width: 150px" >
+
+          <div class="bio mb-3">
+                        <p style="text-align: justify;line-height: 1.5;">Hi, I'm Arvin Maroufi. I am a web developer working in the backend sector. I am fully specialized in Python programming language and Django framework. I love to learn new things and share my knowledge with others and help others.</p>
+                        <p>Find out more about me</p>
+                    </div><!--//bio-->
+          <ul class="social-list list-inline py-3 mx-auto">
+                  <li class="list-inline-item"><a href="https://t.me/arvinmaroufi_ir" target="_blank"><i class="fab fa-telegram fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="https://instagram.com/arvinmaroufi.ir" target="_blank"><i class="fab fa-instagram fa-fw"></i></a></li>
+                  <li class="list-inline-item"><a href="https://github.com/arvinmaroufi" target="_blank"><i class="fab fa-github-alt fa-fw"></i></a></li>
+              </ul><!--//social-list-->
+              <hr>
+        </div><!--//profile-section-->
+
+        <ul class="navbar-nav flex-column text-start">
+          <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'articles_list' %}active{% endif %}" href="{% url 'blog:articles_list' %}"><i class="fas fa-home fa-fw me-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+
+        <div class="my-2 my-md-3">
+            <a class="btn btn-primary" href="{% url 'blog:article_create' %}">Create Article</a>
+        </div>
+      </div>
+    </nav>
+    </header>
+
+    <div class="main-wrapper">
+      {% block content %}{% endblock %}
+    </div><!--//main-wrapper-->
+
+    <footer class="footer text-center py-2 theme-bg-dark">
+        <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <b>Arvin Maroufi</b></small>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="{% static 'plugins/popper.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

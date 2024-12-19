@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Category Create{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 100px;margin-bottom: 373.5px">
+        <form method="post">
+            {% csrf_token %}
+            <h2 style="color: green;margin-bottom: 30px">Category Create</h2>
+            {{ forms|crispy }}
+            <button type="submit" class="btn btn-primary mt-2">Category Create</button>
+            <a href="{% url 'blog:article_create' %}" type="button" class="btn btn-secondary mt-2">Article Create</a>
+            <a href="{% url 'blog:articles_list' %}" class="btn btn-danger mt-2">Cancel</a>
+            <br>
+            <br>
+        </form>
+    </div>
+{% endblock %}

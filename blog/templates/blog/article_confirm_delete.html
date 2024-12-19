@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Article Confirm Delete{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 121px;margin-bottom: 390px">
+    <h2 style="color: green;margin-bottom: 30px">Article Confirm Delete</h2>
+    <p>Are you sure you want to delete "{{ article.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm</button>
+        <a href="{% url 'blog:articles_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+    </div>
+{% endblock %}

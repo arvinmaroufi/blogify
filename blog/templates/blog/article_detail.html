@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title }}{% endblock %}
+{% load static %}
+
+{% block content %}
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container single-col-max-width">
+            <header class="blog-post-header">
+                <h2 class="title mb-2">{{ article.title }}</h2>
+                <div class="meta mb-1">
+                    <span class="date">{{ article.created }}</span>
+                    {% for category in article.category.all %}
+                        <span class="comment">{{ category.title }}</span>
+                    {% endfor %}
+                    <span>{{ article.author }}</span>
+                </div>
+            </header>
+
+            <div class="blog-post-body">
+                <figure class="blog-banner">
+                    {% if article.image_detail %}
+                        <img class="img-fluid" src="{{ article.image_detail.url }}" alt="{{ article.title }}" width="100%">
+                    {% else %}
+                        <img class="img-fluid" src="{% static 'images/image_not_available.jpg' %}"
+                             alt="{{ article.title }}" width="100%">
+                    {% endif %}
+                </figure>
+                <p style="text-align: justify;line-height: 2">{{ article.body }}</p>
+
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="{% url 'blog:article_update' article.slug %}" class="btn btn-info" type="button">Update</a>
+                    <a href="{% url 'blog:article_delete' article.slug %}" class="btn btn-danger"
+                       type="button">Delete</a>
+                </div>
+            </div><!--//container-->
+        </div>
+    </article>
+{% endblock %}
